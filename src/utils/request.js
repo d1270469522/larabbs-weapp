@@ -42,6 +42,33 @@ const request = async (url, options = {}, showLoading = true) => {
   return Promise.reject(error)
 }
 
+const checkToken = async () => {
+  // 从缓存中取出 Token
+  const accessToken = store.getters.accessToken
+  const expiredAt = store.getters.accessTokenExpiredAt
+
+  // 如果 token 过期了，则调用刷新方法
+  if (accessToken && new Date().getTime() > expiredAt) {
+    try {
+      return store.dispatch('refresh')
+    } catch (err) {
+      return store.dispatch('login')
+    }
+  }
+}
+
+// 普通请求
+const authRequest = async (url, options = {}, showLoading = true) => {
+  await checkToken()
+
+  options.header = {
+    Authorization: 'Bearer ' + store.getters.accessToken
+  }
+
+  return await request(url, options, showLoading)
+}
+
 export {
- request
+ request,
+ authRequest,
 }
