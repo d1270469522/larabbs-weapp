@@ -32,6 +32,8 @@ const actions = {
 
     commit('setToken', authResponse.data)
     auth.setToken(authResponse.data)
+
+    dispatch('getUser')
   },
   async getUser ({ dispatch, commit }) {
     const userResponse = await getCurrentUser()
@@ -44,6 +46,8 @@ const actions = {
 
     commit('setToken', refreshResponse.data)
     auth.setToken(refreshResponse.data)
+
+    dispatch('getUser')
   },
   async logout ({ commit, state }) {
     await logout(state.accessToken)

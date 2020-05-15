@@ -1,4 +1,5 @@
 import wepy from '@wepy/core'
+import store from '@/store'
 
 // 服务器接口地址
 const host = 'http://larabbs.test/api/v1/'
