@@ -152,8 +152,8 @@
         this.categoryOpen = false
         this.page = 1
 
-        // 设置 reset 为 true
-        this.loadTopics(true)
+        // 调用组件的 reload 方法
+        this.loadData(true)
       }
     }
 
