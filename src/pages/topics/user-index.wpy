@@ -16,16 +16,28 @@
   import wepy from '@wepy/core'
   import { getUserTopics } from '@/api/topic'
   import listRefresh from '@/mixins/list-refresh.js'
+  import { getUser } from '@/api/user'
 
   wepy.page({
     mixins: [ listRefresh ],
     data: {
       // 用户 id
-      userId: 0
+      userId: 0,
+      // 用户数据
+      user: null
     },
     async onLoad(options) {
       this.userId = options.id
       this.loadData()
+
+      const userResponse = await getUser(this.userId)
+
+      this.user = userResponse.data
+
+      // 动态设置页面标题
+      wx.setNavigationBarTitle({
+        title: this.user.name + ' 发布的话题'
+      })
     },
     methods: {
       async fetchData() {
