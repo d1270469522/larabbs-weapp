@@ -17,6 +17,7 @@
   import { getUserTopics } from '@/api/topic'
   import listRefresh from '@/mixins/list-refresh.js'
   import { getUser } from '@/api/user'
+  import eventHub from '@/common/eventHub'
 
   wepy.page({
     mixins: [ listRefresh ],
@@ -37,6 +38,12 @@
       // 动态设置页面标题
       wx.setNavigationBarTitle({
         title: this.user.name + ' 发布的话题'
+      })
+
+      eventHub.$on('topic-deleted', (topic) => {
+        this.page = 1
+        this.noMoreData = false
+        this.loadData(true)
       })
     },
     methods: {
