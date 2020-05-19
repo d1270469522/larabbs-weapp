@@ -34,13 +34,14 @@ wepy.app({
     'pages/topics/user-index',
     'pages/users/me',
     'pages/users/edit',
+    'pages/users/show',
     'pages/auth/login',
     'pages/auth/register'
   ],
   window: {
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#fff',
-    navigationBarTitleText: 'WeChat',
+    navigationBarTitleText: 'LaraBBS',
     navigationBarTextStyle: 'black'
   },
   tabBar: {
