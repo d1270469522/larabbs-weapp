@@ -34,7 +34,7 @@ module.exports = {
   },
   plugins: [
     DefinePlugin({
-      API_URL: prod ? '"https://weapp.liyu.wiki/api/v1/"' : '"http://larabbs.test/api/v1/"',
+      API_URL: prod ? '"https://bbs.tianjintou.top/api/v1/"' : '"http://larabbs.test/api/v1/"',
     }),
     PluginUglifyjs({
     // options
