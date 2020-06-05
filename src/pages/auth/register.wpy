@@ -247,8 +247,8 @@
         } catch (err) {
           console.log(err.response.data.message)
           // 验证码错误提示
-          this.$set(this.errors, 'captchaValue', err.response.data.message)
           this.getCaptchaCode()
+          this.$set(this.errors, 'captchaValue', [err.response.data.message])
         }
       },
       // 表单提交
